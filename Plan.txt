@@ -1,0 +1,4 @@
+1. First Train the Pilot with 3 Levels
+2. Make A Weird Planet To Cross
+3. A Full Galaxy
+4. We can vary every parameter for player level
