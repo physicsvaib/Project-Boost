@@ -7,6 +7,10 @@ public class Rocket : MonoBehaviour {
 
     Rigidbody rigidBody;
     public AudioSource audio;
+    public float thrust = 40;
+    public float rotationSpeed = 3  ;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +27,7 @@ public class Rocket : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(0,20,0);
+            rigidBody.AddRelativeForce(0,thrust,0);
 
 
             if (!audio.isPlaying)
@@ -39,13 +43,14 @@ public class Rocket : MonoBehaviour {
         }
 
         rigidBody.freezeRotation = true;
+
         if (Input.GetKey(KeyCode.D ))
         {
-            transform.Rotate(Vector3.back);
+            transform.Rotate(Vector3.back * rotationSpeed);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward * rotationSpeed);
         }
 
         rigidBody.freezeRotation = false;
