@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 648185896}
   - component: {fileID: 648185895}
   - component: {fileID: 648185894}
+  - component: {fileID: 648185898}
   m_Layer: 0
   m_Name: Platform (5)
   m_TagString: Enemy
@@ -667,6 +668,20 @@ Transform:
   m_Father: {fileID: 1805581099}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &648185898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 648185893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce23679f54c56024c8e9d4495bcc469e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  momentVector: {x: 10, y: 0, z: 0}
+  timePeriod: 5
+  momentFactor: -1
 --- !u!1001 &661844175
 Prefab:
   m_ObjectHideFlags: 0
@@ -1015,6 +1030,16 @@ Prefab:
       propertyPath: mainEngine
       value: 
       objectReference: {fileID: 8300000, guid: d35efcc485e8d484a84228b70e7cea19, type: 3}
+    - target: {fileID: 114945844190551858, guid: ba747766de7d4574cb016e6598176805,
+        type: 2}
+      propertyPath: successAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 48513fab6e6484f408b87d08a391e4ff, type: 3}
+    - target: {fileID: 114945844190551858, guid: ba747766de7d4574cb016e6598176805,
+        type: 2}
+      propertyPath: deathAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 2387a531111a3e24198bbcd76b011289, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba747766de7d4574cb016e6598176805, type: 2}
   m_IsPrefabAsset: 0
@@ -1436,6 +1461,7 @@ GameObject:
   - component: {fileID: 2029169102}
   - component: {fileID: 2029169101}
   - component: {fileID: 2029169100}
+  - component: {fileID: 2029169104}
   m_Layer: 0
   m_Name: Platform (2)
   m_TagString: Enemy
@@ -1514,6 +1540,20 @@ Transform:
   m_Father: {fileID: 1805581099}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &2029169104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029169099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce23679f54c56024c8e9d4495bcc469e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  momentVector: {x: 0, y: 5, z: 0}
+  timePeriod: 2
+  momentFactor: 0
 --- !u!1 &2114769505
 GameObject:
   m_ObjectHideFlags: 0

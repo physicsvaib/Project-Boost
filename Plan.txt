@@ -2,3 +2,5 @@
 2. Make A Weird Planet To Cross
 3. A Full Galaxy
 4. We can vary every parameter for player level
+5. time vary
+6. MAke the screen rotation
