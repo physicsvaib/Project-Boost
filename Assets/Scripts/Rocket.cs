@@ -9,7 +9,17 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audio;
     public float thrust = 40;
-    public float rotationSpeed = 3  ;
+    public float rotationSpeed = 3;
+
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip deathAudio;
+    [SerializeField] AudioClip successAudio;
+
+    [SerializeField] ParticleSystem mainEngieParticles;
+    [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem successParticles;
+
+
 
     enum State { alive,dead,Success }
     State state = State.alive;
@@ -18,12 +28,21 @@ public class Rocket : MonoBehaviour {
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
+       
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        getInput();	
-	}
+        getInput();
+        
+    }
+
+    
+   
+
+
+
 
     void getInput()
     {
@@ -34,14 +53,17 @@ public class Rocket : MonoBehaviour {
 
             if (!audio.isPlaying)
             {
-                audio.Play();
+                audio.PlayOneShot(mainEngine);
+                mainEngieParticles.Play();
+
             }
-            
-            
+
+
         }
         else
         {
             audio.Stop();
+            mainEngieParticles.Stop();  
         }
 
         rigidBody.freezeRotation = true;
@@ -50,7 +72,7 @@ public class Rocket : MonoBehaviour {
         {
             transform.Rotate(Vector3.back * rotationSpeed);
         }
-        else if (Input.GetKey(KeyCode.A) && state != State.dead && state != State.Success   )
+        else if (Input.GetKey(KeyCode.A) && state != State.dead && state != State.Success)
         {
             transform.Rotate(Vector3.forward * rotationSpeed);
         }
@@ -63,8 +85,10 @@ public class Rocket : MonoBehaviour {
     {
         if (target.gameObject.tag == "Enemy")
         {
+            audio.Stop();
+            deathParticles.Play();
             state = State.dead;
-            Invoke("deadly", 1f);
+            audio.Play(); Invoke("deadly", 1f);
 
 
         }
@@ -73,8 +97,11 @@ public class Rocket : MonoBehaviour {
 
         if (target.gameObject.tag == "Finish")
         {
+            audio.Stop();   
+            audio.PlayOneShot(successAudio);
+            successParticles.Play();
             state = State.Success;
-
+            audio.Play();
             Invoke("successed", 2f);
         }
         
@@ -84,12 +111,14 @@ public class Rocket : MonoBehaviour {
     }
     void deadly()
     {
+
         SceneManager.LoadScene("Trainer");
         
     }
     void successed()
     {
+
         SceneManager.LoadScene("Level 1");
     } 
-
+   
 }
