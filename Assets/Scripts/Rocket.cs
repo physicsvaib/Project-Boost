@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
 
 
     Rigidbody rigidBody;
-    public AudioSource audio;
+    AudioSource audio;
     public float thrust = 40;
     public float rotationSpeed = 3  ;
 
-
+    enum State { alive,dead,Success }
+    State state = State.alive;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +27,7 @@ public class Rocket : MonoBehaviour {
 
     void getInput()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && state != State.dead && state != State.Success)
         {
             rigidBody.AddRelativeForce(0,thrust,0);
 
@@ -44,15 +46,50 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = true;
 
-        if (Input.GetKey(KeyCode.D ))
+        if (Input.GetKey(KeyCode.D) && state != State.dead && state != State.Success)
         {
             transform.Rotate(Vector3.back * rotationSpeed);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) && state != State.dead && state != State.Success   )
         {
             transform.Rotate(Vector3.forward * rotationSpeed);
         }
 
         rigidBody.freezeRotation = false;
     }
+
+
+    private void OnCollisionEnter(Collision target)
+    {
+        if (target.gameObject.tag == "Enemy")
+        {
+            state = State.dead;
+            Invoke("deadly", 1f);
+
+
+        }
+
+        
+
+        if (target.gameObject.tag == "Finish")
+        {
+            state = State.Success;
+
+            Invoke("successed", 2f);
+        }
+        
+
+
+
+    }
+    void deadly()
+    {
+        SceneManager.LoadScene("Trainer");
+        
+    }
+    void successed()
+    {
+        SceneManager.LoadScene("Level 1");
+    } 
+
 }
