@@ -8,17 +8,17 @@ public class Rocket : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audio;
-    public float thrust = 40;
-    public float rotationSpeed = 3;
+    public float thrust = 45;
+    public float rotationSpeed = 8;
 
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] AudioClip successAudio;
-
+    [SerializeField] bool canDie;
     [SerializeField] ParticleSystem mainEngieParticles;
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
-
+    static int level = 0;
 
 
     enum State { alive,dead,Success }
@@ -35,7 +35,16 @@ public class Rocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         getInput();
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            canDie = !canDie;
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            
+            SceneManager.LoadScene(level);
+        }
+
     }
 
     
@@ -46,6 +55,7 @@ public class Rocket : MonoBehaviour {
 
     void getInput()
     {
+        rigidBody.AddForce(0, -5, 0);
         if (Input.GetKey(KeyCode.Space) && state != State.dead && state != State.Success)
         {
             rigidBody.AddRelativeForce(0,thrust,0);
@@ -83,30 +93,34 @@ public class Rocket : MonoBehaviour {
 
     private void OnCollisionEnter(Collision target)
     {
-        if (target.gameObject.tag == "Enemy")
+        if (canDie)
         {
-            audio.Stop();
-            deathParticles.Play();
-            state = State.dead;
-            audio.Play(); Invoke("deadly", 1f);
+            if (target.gameObject.tag == "Enemy")
+            {
+                audio.Stop();
+                deathParticles.Play();
+                state = State.dead;
+                audio.Play(); Invoke("deadly", 1f);
 
+
+            }
 
         }
 
+            if (target.gameObject.tag == "Finish")
+            {
+                audio.Stop();
+                
+                Debug.Log(level);
+                audio.PlayOneShot(successAudio);
+                successParticles.Play();
+                state = State.Success;
+                audio.Play();
+                Invoke("successed", 2f);
+            }
+
+
         
-
-        if (target.gameObject.tag == "Finish")
-        {
-            audio.Stop();   
-            audio.PlayOneShot(successAudio);
-            successParticles.Play();
-            state = State.Success;
-            audio.Play();
-            Invoke("successed", 2f);
-        }
-        
-
-
 
     }
     void deadly()
@@ -117,8 +131,9 @@ public class Rocket : MonoBehaviour {
     }
     void successed()
     {
+        level += 1;
 
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene(level);
     } 
    
 }
