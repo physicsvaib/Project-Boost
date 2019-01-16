@@ -18,7 +18,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem mainEngieParticles;
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
-    static int level = 0;
+    static int level = 1;
 
 
     enum State { alive,dead,Success }
@@ -28,7 +28,7 @@ public class Rocket : MonoBehaviour {
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
-       
+        canDie = false;
         
 	}
 	
@@ -98,8 +98,11 @@ public class Rocket : MonoBehaviour {
             if (target.gameObject.tag == "Enemy")
             {
                 audio.Stop();
+                Debug.Log(level + "was");
                 deathParticles.Play();
                 state = State.dead;
+ 
+
                 audio.Play(); Invoke("deadly", 1f);
 
 
@@ -126,13 +129,13 @@ public class Rocket : MonoBehaviour {
     void deadly()
     {
 
-        SceneManager.LoadScene("Trainer");
+        SceneManager.LoadScene(level);
         
     }
     void successed()
     {
         level += 1;
-
+        Debug.Log(level + "is ");
         SceneManager.LoadScene(level);
     } 
    

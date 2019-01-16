@@ -3,9 +3,9 @@
 3. A Full Galaxy
 4. We can vary every parameter for player level
 5. time vary
-6. Ma   ke the screen rotation
+6. Make the screen rotation
 7. rotation
 8. speed
 9. Lighting Problem
 10. Gravity Manipulation
-11. Front Hide Screen
+11. Front Hide Screen   
