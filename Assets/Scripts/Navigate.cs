@@ -21,7 +21,7 @@ public class Navigate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
 
-            SceneManager.LoadScene("Trainer");
+            SceneManager.LoadScene(1);
 
         }
     }

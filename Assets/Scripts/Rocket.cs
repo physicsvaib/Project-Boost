@@ -28,7 +28,7 @@ public class Rocket : MonoBehaviour {
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
-        canDie = false;
+        canDie = true;
         
 	}
 	
@@ -41,7 +41,8 @@ public class Rocket : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            
+            level++;
+            Debug.Log(level);
             SceneManager.LoadScene(level);
         }
 

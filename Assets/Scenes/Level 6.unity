@@ -548,8 +548,8 @@ Transform:
   - {fileID: 1652794255}
   - {fileID: 2024161020}
   - {fileID: 530815140}
-  - {fileID: 347955882}
   - {fileID: 195682967}
+  - {fileID: 347955882}
   - {fileID: 1444822362}
   - {fileID: 107401537}
   m_Father: {fileID: 0}
@@ -592,7 +592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalScale.x
@@ -745,7 +745,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalScale.x
@@ -779,6 +779,16 @@ Prefab:
         type: 2}
       propertyPath: momentVector.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: momentFactor
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: timePeriod
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
@@ -993,6 +1003,16 @@ Prefab:
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 102.451004
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: momentVector.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: timePeriod
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
@@ -1216,7 +1236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalScale.x
@@ -1237,6 +1257,16 @@ Prefab:
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 27.970001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: momentVector.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: timePeriod
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
@@ -1396,7 +1426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalScale.x
@@ -1417,6 +1447,16 @@ Prefab:
     - target: {fileID: 4143853449980820, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 96.426
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: momentVector.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114367260445932374, guid: b3cb5c3304a752c44bce062a4eaea5e3,
+        type: 2}
+      propertyPath: timePeriod
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cb5c3304a752c44bce062a4eaea5e3, type: 2}
