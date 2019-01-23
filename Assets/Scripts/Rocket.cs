@@ -18,7 +18,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem mainEngieParticles;
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
-    static int level = 1;
+    public static int level = 2;
 
 
     enum State { alive,dead,Success }
@@ -35,16 +35,7 @@ public class Rocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         getInput();
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            canDie = !canDie;
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            level++;
-            Debug.Log(level);
-            SceneManager.LoadScene(level);
-        }
+        
 
     }
 
@@ -57,7 +48,7 @@ public class Rocket : MonoBehaviour {
     void getInput()
     {
         rigidBody.AddForce(0, -5, 0);
-        if (Input.GetKey(KeyCode.Space) && state != State.dead && state != State.Success)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) && state != State.dead && state != State.Success)
         {
             rigidBody.AddRelativeForce(0,thrust,0);
 
@@ -79,11 +70,11 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = true;
 
-        if (Input.GetKey(KeyCode.D) && state != State.dead && state != State.Success)
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) && state != State.dead && state != State.Success)
         {
             transform.Rotate(Vector3.back * rotationSpeed);
         }
-        else if (Input.GetKey(KeyCode.A) && state != State.dead && state != State.Success)
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) && state != State.dead && state != State.Success)
         {
             transform.Rotate(Vector3.forward * rotationSpeed);
         }
@@ -135,9 +126,14 @@ public class Rocket : MonoBehaviour {
     }
     void successed()
     {
-        level += 1;
-        Debug.Log(level + "is ");
-        SceneManager.LoadScene(level);
-    } 
+ 
+        {
+            level += 1;
+            Debug.Log(level + "is ");
+            SceneManager.LoadScene(level);
+        }
+       
+
+    }
    
 }

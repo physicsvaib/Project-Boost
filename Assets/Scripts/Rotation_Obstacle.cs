@@ -25,7 +25,8 @@ public class Rotation_Obstacle : MonoBehaviour {
     {
 
         offset = momentVector * momentFactor;
-        transform.Rotate(offset);
+        transform.rotation = Quaternion.EulerRotation(offset);            
+      ;
         moveIt();
     }
 
