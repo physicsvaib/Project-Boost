@@ -11,6 +11,12 @@ public class Rocket : MonoBehaviour {
     public float thrust = 45;
     public float rotationSpeed = 8;
 
+
+    // JOYSTICK BUTTONS
+    protected Joystick joystick;
+    protected JoyButton joybutton;
+
+
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] AudioClip successAudio;
@@ -19,7 +25,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
     public static int level = 2;
-
+    protected bool boosted;
 
     enum State { alive,dead,Success }
     State state = State.alive;
@@ -29,14 +35,17 @@ public class Rocket : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
         canDie = true;
+        joybutton = FindObjectOfType<JoyButton>();
+        joystick = FindObjectOfType<Joystick>();
+        boosted = false;
         
 	}
 	
 	// Update is called once per frame
 	void Update () {
         getInput();
-        
 
+        mobile();
     }
 
     
@@ -48,7 +57,7 @@ public class Rocket : MonoBehaviour {
     void getInput()
     {
         rigidBody.AddForce(0, -5, 0);
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) && state != State.dead && state != State.Success)
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) && state != State.dead && state != State.Success || boosted)
         {
             rigidBody.AddRelativeForce(0,thrust,0);
 
@@ -70,18 +79,35 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = true;
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) && state != State.dead && state != State.Success)
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) && state != State.dead && state != State.Success || (joystick.Horizontal > 0))
         {
             transform.Rotate(Vector3.back * rotationSpeed);
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) && state != State.dead && state != State.Success)
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) && state != State.dead && state != State.Success || (joystick.Horizontal < 0f))
         {
             transform.Rotate(Vector3.forward * rotationSpeed);
         }
 
         rigidBody.freezeRotation = false;
+
+
+
+
     }
 
+     void mobile()
+    {
+        if (joybutton.Pressed == true)
+        {
+            boosted = true;
+            Debug.Log("True");
+        }
+        if (joybutton.Pressed == false)
+        {
+            boosted = false;
+            Debug.Log("False");
+        }
+    }
 
     private void OnCollisionEnter(Collision target)
     {
